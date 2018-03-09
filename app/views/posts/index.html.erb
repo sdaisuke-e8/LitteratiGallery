@@ -1,0 +1,15 @@
+<div class="main posts-index">
+  <div class="container">
+    <% @posts.each do |post| %>
+      <div class="posts-index-item">
+        <h2 class="post-author">
+          <%= post.user.name %>
+        </h2>
+        <%= image_tag post.image.url %>
+        <p class="topic-text">
+          <%= post.description %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+</div>
