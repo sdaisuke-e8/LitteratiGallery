@@ -1,0 +1,19 @@
+<div class="main posts-index">
+  <div class="container">
+      <div class="posts-index-item">
+        <h2 class="post-author">
+          <%= @post.user.name %>
+        </h2>
+        <%= image_tag @post.image.url%>
+        <% if Favorite.find_by(user_id: @current_user.id, post_id: @post.id) %>
+          いいね！済み
+        <% else %>
+          <%= link_to("いいね！", "/favorites/#{@post.id}/create", {method: "post"}) %>
+        <% end %>
+        <%= image_tag 'icons/heart-black.png', class: 'post-index-icon' %>
+        <p class="topic-text">
+          <%= @post.description %>
+        </p>
+      </div>
+  </div>
+</div>

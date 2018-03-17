@@ -17,6 +17,10 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
+  def show
+    @post = Post.includes(:user).find(params[:id])
+  end
+
   private
   def post_params
     params.require(:post).permit(:image, :description)
