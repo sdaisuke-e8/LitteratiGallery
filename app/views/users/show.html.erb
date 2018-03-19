@@ -1,5 +1,10 @@
 <div class="main posts-index">
   <div class="container">
+    <div class="user">
+      <h2><%= @user.name %></h2>
+      <p><%= @user.email %></p>
+    </div>
+
     <% @favorite_posts.each do |post| %>
       <div class="posts-index-item">
         <h2 class="post-author">
@@ -7,7 +12,7 @@
         </h2>
         <%= link_to image_tag(post.image.url, {:border => '0'}), "/posts/#{post.id}" %>
           <%= image_tag 'icons/heart-black.png', class: 'post-index-icon' %>
-        <p class="topic-text">
+        <p class="post-text">
           <%= post.description %>
         </p>
       </div>

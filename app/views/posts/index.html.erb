@@ -7,7 +7,7 @@
         </h2>
         <%= link_to image_tag(post.image.url, {:border => '0'}), "/posts/#{post.id}" %>
         <%= image_tag 'icons/heart-black.png', class: 'post-index-icon' %>
-        <p class="topic-text">
+        <p class="post-text">
           <%= post.description %>
         </p>
       </div>

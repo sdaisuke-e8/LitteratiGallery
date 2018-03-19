@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = User.find_by(id: params[:id])
     @favorite_posts = current_user.favorite_posts
   end
 

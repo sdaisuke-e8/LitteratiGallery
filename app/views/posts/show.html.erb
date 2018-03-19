@@ -6,12 +6,16 @@
         </h2>
         <%= image_tag @post.image.url%>
         <% if Favorite.find_by(user_id: @current_user.id, post_id: @post.id) %>
-          いいね！済み
+          <%= link_to("/favorites/#{@post.id}/destroy", {method: "post"}) do %>
+            <span class="fa fa-heart like-btn-unlike"></span>
+          <% end %>
         <% else %>
-          <%= link_to("いいね！", "/favorites/#{@post.id}/create", {method: "post"}) %>
+          <%= link_to("/favorites/#{@post.id}/create", {method: "post"}) do %>
+            <span class="fa fa-heart like-btn"></span>
+          <% end %>
         <% end %>
-        <%= image_tag 'icons/heart-black.png', class: 'post-index-icon' %>
-        <p class="topic-text">
+        <%= @favorites_count %>
+        <p class="post-text">
           <%= @post.description %>
         </p>
       </div>
