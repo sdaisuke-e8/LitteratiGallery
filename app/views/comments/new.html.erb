@@ -1,0 +1,16 @@
+<div class="main posts-new">
+  <div class="container">
+    <h1 class="form-heading">コメントする</h1>
+    <div class="form">
+      <div class="form-body">
+        <%= form_for @comment do |f| %>
+          <div class="form-group">
+            <%= f.text_area :comment, class: 'form-control' %>
+            <textarea name="post_id" class="hidden"><%= params[:post_id] %></textarea>
+          </div>
+          <%= f.submit "投稿", class: 'btn btn-block btn-black' %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

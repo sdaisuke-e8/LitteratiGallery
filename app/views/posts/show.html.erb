@@ -15,9 +15,19 @@
           <% end %>
         <% end %>
         <%= @favorites_count %>
+        <%= link_to comments_path(post_id: @post.id) do %>
+          <span class="fa fa-comment"></span>
+        <% end %>
         <p class="post-text">
           <%= @post.description %>
         </p>
+        <!-- コメント欄 -->
+        <h3 class="post-author">コメント</h3>
+        <div class="post-text">
+          <% @comments.each do |comment| %>
+            <p><%= comment.comment %></p>
+          <% end %>
+        </div>
       </div>
   </div>
 </div>
