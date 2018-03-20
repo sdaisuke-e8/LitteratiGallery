@@ -6,16 +6,16 @@
         </h2>
         <%= image_tag @post.image.url%>
         <% if Favorite.find_by(user_id: @current_user.id, post_id: @post.id) %>
-          <%= link_to("/favorites/#{@post.id}/destroy", {method: "post"}) do %>
+          <%= link_to post_favorite_path(post_id: @post.id), method: :delete do %>
             <span class="fa fa-heart like-btn-unlike"></span>
           <% end %>
         <% else %>
-          <%= link_to("/favorites/#{@post.id}/create", {method: "post"}) do %>
+          <%= link_to post_favorites_path(post_id: @post.id), method: :post do %>
             <span class="fa fa-heart like-btn"></span>
           <% end %>
         <% end %>
         <%= @favorites_count %>
-        <%= link_to comments_path(post_id: @post.id) do %>
+        <%= link_to new_post_comment_path(post_id: @post.id) do %>
           <span class="fa fa-comment"></span>
         <% end %>
         <p class="post-text">
