@@ -20,6 +20,11 @@
       margin-bottom: 20px;
       width: 100%;
     }
+    .post-index-icon {
+        width: 35px;
+        height: 30px;
+        margin-left: 20px;
+    }
 }
 
 /* posts/show ================================ */
@@ -94,4 +99,18 @@
 .form-control::-webkit-input-placeholder {
   font-size: 24px;
   opacity: 0.5;
+}
+
+/* いいね機能================================ */
+.like-btn {
+  color: #8899a6;
+}
+
+.like-btn-unlike {
+  color: #ff2581;
+}
+
+.posts-show-item .fa {
+  font-size: 16px;
+  margin-right: 3px;
 }

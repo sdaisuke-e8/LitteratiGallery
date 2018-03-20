@@ -17,6 +17,11 @@ class PostsController < ApplicationController
     @posts = Post.all
   end
 
+  def show
+    @post = Post.includes(:user).find(params[:id])
+    @favorites_count = Favorite.where(post_id: @post.id).count
+  end
+
   private
   def post_params
     params.require(:post).permit(:image, :description)

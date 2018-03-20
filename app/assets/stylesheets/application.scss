@@ -1,5 +1,9 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "pages";
+@import "users";
+@import "sessions";
+@import "posts";
 
 /* reset ================================ */
 * {
