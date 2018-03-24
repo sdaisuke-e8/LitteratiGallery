@@ -1,4 +1,6 @@
 class FavoritesController < ApplicationController
+  before_action :authenticate_user, {only: [:create, :destroy]}
+
   def create
     @favorite = Favorite.new
     @favorite.user_id = @current_user.id
