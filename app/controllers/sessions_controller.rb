@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  before_action :authenticate_user, {only: [:destroy]}
+  before_action :forbid_login_user, {only: [:new, :create]}
+
   def new
     @user = User.new
   end
@@ -22,10 +25,6 @@ class SessionsController < ApplicationController
   end
 
   private
-  def log_in(user)
-    session[:user_id] = user.id
-  end
-
   def log_out
     session.delete(:user_id)
     @current_user = nil

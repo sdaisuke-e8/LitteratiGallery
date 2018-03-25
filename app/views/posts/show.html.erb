@@ -1,27 +1,50 @@
 <div class="main posts-index">
   <div class="container">
       <div class="posts-index-item">
-        <h2 class="post-author">
-          <%= @post.user.name %>
-        </h2>
+        <!-- ユーザー情報 -->
+        <div class="post-user-image">
+          <img src="<%= "/user_images/#{@post.user.image_name}" %>">
+        </div>
+        <div class="post-user-name">
+          <%= link_to(@post.user.name, "/users/#{@post.user.id}") %>
+        </div>
+
+        <!-- 投稿画像 -->
         <%= image_tag @post.image.url%>
+
+        <!-- いいね！機能 -->
         <% if Favorite.find_by(user_id: @current_user.id, post_id: @post.id) %>
-          <%= link_to("/favorites/#{@post.id}/destroy", {method: "post"}) do %>
+          <%= link_to post_favorite_path(post_id: @post.id), method: :delete do %>
             <span class="fa fa-heart like-btn-unlike"></span>
           <% end %>
         <% else %>
-          <%= link_to("/favorites/#{@post.id}/create", {method: "post"}) do %>
+          <%= link_to post_favorites_path(post_id: @post.id), method: :post do %>
             <span class="fa fa-heart like-btn"></span>
           <% end %>
         <% end %>
+
+        <!-- いいね！の数 -->
         <%= @favorites_count %>
-        <%= link_to comments_path(post_id: @post.id) do %>
+
+        <!-- コメントへのリンク -->
+        <%= link_to new_post_comment_path(post_id: @post.id) do %>
           <span class="fa fa-comment"></span>
         <% end %>
+
+        <!-- 投稿画像の概要 -->
         <p class="post-text">
           <%= @post.description %>
         </p>
-        <!-- コメント欄 -->
+
+        <!-- 投稿データの編集・削除 -->
+        <% if @post.user_id == @current_user.id %>
+          <div class="post-menus">
+            <%= link_to("編集", "/posts/#{@post.id}/edit") %>
+            <%= link_to("削除", "/posts/#{@post.id}", {method: "delete"}) %>
+          </div>
+        <% end %>
+
+        <!-- コメント -->
         <h3 class="post-author">コメント</h3>
         <div class="post-text">
           <% @comments.each do |comment| %>

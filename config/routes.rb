@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   post '/logout', to: 'sessions#destroy'
 
   get '/signup', to: 'users#new'
-  resources :users, :only => [:new, :create, :show]
-  resources 'posts'
-
-  post '/favorites/:post_id/create', to: 'favorites#create'
-  post '/favorites/:post_id/destroy', to: 'favorites#destroy'
+  resources :users
+  resources :posts do
+    resources :comments, only: [:new, :create]
+    resources :favorites, only: [:create, :destroy]
+  end
 end

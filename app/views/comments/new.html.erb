@@ -3,7 +3,7 @@
     <h1 class="form-heading">コメントする</h1>
     <div class="form">
       <div class="form-body">
-        <%= form_for @comment do |f| %>
+        <%= form_for(@comment, url: post_comments_path) do |f| %>
           <div class="form-group">
             <%= f.text_area :comment, class: 'form-control' %>
             <textarea name="post_id" class="hidden"><%= params[:post_id] %></textarea>
