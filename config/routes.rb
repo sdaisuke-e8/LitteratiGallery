@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get '/comments', to: 'comments#new'
+  post '/comments', to: 'comments#create'
+
   root 'pages#home'
   get '/about', to: 'pages#about'
 
