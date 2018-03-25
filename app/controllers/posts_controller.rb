@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
   before_action :authenticate_user, {only: [:create, :index, :show, :edit, :update, :destory]}
 
+  def indextest
+    @posts = Post.all
+  end
+
   def new
     @post = Post.new
   end
@@ -47,7 +51,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:user_id, :image, :description)
+    params.require(:post).permit(:image, :description)
   end
 
 end

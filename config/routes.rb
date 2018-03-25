@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get '/poststest', to: 'posts#indextest'
+
   root 'pages#home'
   get '/about', to: 'pages#about'
 
