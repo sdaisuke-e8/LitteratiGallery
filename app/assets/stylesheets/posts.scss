@@ -5,6 +5,10 @@
   overflow: hidden;
   box-shadow: 0 2px 6px #c1ced7;
 
+    .post-author {
+      margin-right: 50px;
+    }
+
     .post-text {
       padding-right: 20px;
       padding-left: 20px;
@@ -151,15 +155,18 @@
   margin: 0 0 $margin*3 0;
   background: $white;
   width: 100%;
+  height: 400px;
   float: left;
 
   .post-user-data {
-    float: left;
     width: 100%;
-    position: relative;
+    height: 80px;
+
+    .post-user-data-content {
+      float: left;
+    }
 
     .post-user-image {
-      float: left;
       padding: 10px;
     }
 
@@ -168,16 +175,7 @@
       height: 50px;
       border-radius: 50%;
       box-shadow: 0 2px 6px #c1ced7;
-      object-fit: cover;
-    }
-
-    .post-user-name {
-      float: left;
-      text-align: left;
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      margin: auto;
+      object-fit: contain;
     }
   }
 
@@ -189,9 +187,7 @@
       text-align: center;
 
       img {
-        width: 60%;
-        padding: $padding;
-
+        width: 80%;
       }
 
       .likes {
@@ -210,7 +206,7 @@
       letter-spacing: 1px;
       padding: $padding*1.5;
       height: 75px;
-      width: 80%;
+      width: 100%;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;

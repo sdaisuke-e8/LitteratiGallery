@@ -1,23 +1,25 @@
 <div class="main posts-new">
   <div class="container">
-    <h1 class="form-heading">編集する</h1>
-    <div class="form">
-      <div class="form-body">
-        <% @post.errors.full_messages.each do |message| %>
-          <div class="form-error">
-            <%= message %>
-          </div>
-        <% end %>
+    <div class="contents">
+      <h1 class="form-heading">編集する</h1>
+      <div class="form">
+        <div class="form-body">
+          <% @post.errors.full_messages.each do |message| %>
+            <div class="form-error">
+              <%= message %>
+            </div>
+          <% end %>
 
-        <%= form_for @post do |f| %>
-          <div class="form-group">
-            <%= f.label :概要 %>
-            <%= f.text_area :description, value: @post.description, class: 'form-control' %>
-          </div>
+          <%= form_for @post do |f| %>
+            <div class="form-group">
+              <%= f.label :概要 %>
+              <%= f.text_area :description, value: @post.description, class: 'form-control' %>
+            </div>
 
-          <%= f.submit "保存" %>
-        <% end %>
+            <%= f.submit "保存" %>
+          <% end %>
 
+        </div>
       </div>
     </div>
   </div>

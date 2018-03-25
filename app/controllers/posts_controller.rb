@@ -1,10 +1,6 @@
 class PostsController < ApplicationController
   before_action :authenticate_user, {only: [:create, :index, :show, :edit, :update, :destory]}
 
-  def indextest
-    @posts = Post.all
-  end
-
   def new
     @post = Post.new
   end
@@ -21,6 +17,12 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @favorites = Favorite.all
+
+    from = Date.today.beginning_of_week
+    to = Date.today.next_week.beginning_of_week
+    latest_posts = @posts.where(created_at: from...to)
+    @popular_posts = latest_posts.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
   end
 
   def show
