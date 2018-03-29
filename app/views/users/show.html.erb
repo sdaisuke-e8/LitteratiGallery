@@ -11,19 +11,43 @@
       <% end %>
     </div>
 
-    <% @favorite_posts.each do |post| %>
-      <div class="posts-index-item">
-        <div class="post-user-image">
-          <img src="<%= "/user_images/#{post.user.image_name}" %>">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="post-content">
+          <h3>Latest Photos</h3>
+          <div class="row posts-wrap">
+            <% @favorite_posts.each do |post| %>
+              <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+                <div class="post-box">
+                  <div class="post-user-data">
+                    <div class="post-user-image post-user-data-content">
+                      <img src="<%= "/user_images/#{post.user.image_name}" %>">
+                    </div>
+                    <div class="post-user-name post-user-data-content">
+                      <%= link_to(post.user.name, "/users/#{post.user.id}") %>
+                    </div>
+                  </div>
+                  <div class="post-data">
+                    <div class="image-wrap">
+                      <%= link_to image_tag(post.image.url, {:border => '0'}), "/posts/#{post.id}" %>
+                      <div class="likes">
+                        <% @favorites_count = Favorite.where(post_id: post.id).count %>
+                        <%= @favorites_count %><span> Likes</span>
+                      </div>
+                    </div>
+                    <div class="post-description">
+                      <%= post.description %>
+                      <div class="date">
+                        <%= post.created_at %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </div>
-        <div class="post-user-name">
-          <%= link_to(post.user.name, "/users/#{post.user.id}") %>
-        </div>
-        <%= link_to image_tag(post.image.url, {:border => '0'}), "/posts/#{post.id}" %>
-        <p class="post-text">
-          <%= post.description %>
-        </p>
       </div>
-    <% end %>
+    </div>
   </div>
 </div>

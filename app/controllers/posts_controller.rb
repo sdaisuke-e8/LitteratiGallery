@@ -17,6 +17,12 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @favorites = Favorite.all
+
+    from = Time.now.at_beginning_of_day
+    to = (from + 6.day).at_end_of_day
+    latest_posts = Post.where(created_at: from...to)
+    @popular_posts = latest_posts.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
   end
 
   def show
@@ -47,7 +53,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:user_id, :image, :description)
+    params.require(:post).permit(:image, :description)
   end
 
 end

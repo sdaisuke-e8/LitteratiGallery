@@ -1,3 +1,26 @@
+/*
+* Custom variables
+*/
+$main-font: 'Lato', sans-serif;
+$sub-font: 'Montserrat', sans-serif;
+$fancy-font: 'Kaushan Script', cursive;
+$font-size: 16px;
+
+$black: #000;
+$white: #FFF;
+$grey: #585c65;
+$mediumgrey: #9b9b9b;
+$lightgrey: #eeeeee;
+$blue: #3466a1;
+
+$padding: 10px;
+$margin: 10px;
+
+/*
+* Override Bootstrap variables
+*/
+$font-family-sans-serif: $main-font;
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "pages";
@@ -7,6 +30,7 @@
 
 /* reset ================================ */
 * {
+  position: relative;
   box-sizing: border-box;
 }
 
@@ -45,7 +69,7 @@ form input[type="submit"] {
 /* 共通レイアウト ================================ */
 body {
   color: #2d3133;
-  background-color: #3ecdc6;
+  background-color: #f5f8fa;
   margin: 0;
   min-height: 1vh;
 }
@@ -59,13 +83,13 @@ body {
   background-color: #f5f8fa;
 }
 
-.container {
+.contents {
   max-width: 600px;
   margin: 60px auto;
   padding-left: 15px;
   padding-right: 15px;
-  clear: both;
 }
+
 
 /* ヘッダー ================================ */
 header {
@@ -73,6 +97,7 @@ header {
   position: absolute;
   z-index: 1;
   width: 100%;
+  background-color: #3ecdc6;
 }
 
 .header-logo {
