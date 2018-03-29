@@ -17,6 +17,8 @@ gem 'bootstrap-sass'
 gem 'jquery-rails'
 gem 'bcrypt'
 gem 'carrierwave'
+gem 'omniauth'
+gem 'omniauth-twitter'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

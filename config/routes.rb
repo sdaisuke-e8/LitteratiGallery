@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'pages#home'
   get '/about', to: 'pages#about'
 
+  get '/auth/:provider/callback', to: 'sessions#twitter_create'
   get '/login', to: 'sessions#new'
   post '/login', to: 'sessions#create'
   post '/logout', to: 'sessions#destroy'

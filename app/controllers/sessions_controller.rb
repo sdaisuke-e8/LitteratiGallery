@@ -24,6 +24,13 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  def twitter_create
+    user = User.find_or_create_from_auth_hash(request.env['omniauth.auth'])
+    log_in user
+    flash[:notice] = 'ログインしました'
+    redirect_to posts_path
+  end
+
   private
   def log_out
     session.delete(:user_id)
