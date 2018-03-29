@@ -19,9 +19,9 @@ class PostsController < ApplicationController
     @posts = Post.all
     @favorites = Favorite.all
 
-    from = Date.today.beginning_of_week
-    to = Date.today.next_week.beginning_of_week
-    latest_posts = @posts.where(created_at: from...to)
+    from = Time.now.at_beginning_of_day
+    to = (from + 6.day).at_end_of_day
+    latest_posts = Post.where(created_at: from...to)
     @popular_posts = latest_posts.find(Favorite.group(:post_id).order('count(post_id) desc').limit(3).pluck(:post_id))
   end
 
