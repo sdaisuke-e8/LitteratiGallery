@@ -1,23 +1,42 @@
 class User < ApplicationRecord
-  validates :name, presence: true
-  validates :email, presence: true
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:twitter]
 
   has_many :posts
   has_many :favorites
   has_many :favorite_posts, through: :favorites, source: 'post'
   has_many :comments
 
-  has_secure_password
+  def self.from_omniauth(auth)
+    where(provider: auth["provider"], uid: auth["uid"]).first_or_create do |user|
+      user.provider = auth["provider"]
+      user.uid = auth["uid"]
+      user.nickname = auth["info"]["nickname"]
+    end
+  end
 
-  def self.find_or_create_from_auth_hash(auth_hash)
-    provider = auth_hash[:provider]
-    uid = auth_hash[:uid]
-    nickname = auth_hash[:info][:nickname]
-    image_url = auth_hash[:info][:image]
+  def self.new_with_session(params, session)
+    if session["devise.user_attributes"]
+      new(session["devise.user_attributes"]) do |user|
+        user.attributes = params
+        user.valid?
+      end
+    else
+      super
+    end
+  end
 
-    User.find_or_create_by(provider: provider, uid: uid) do |user|
-      user.nickname = nickname
-      user.image_url = image_url
+  def password_required?
+    super && provider.blank?
+  end
+
+  def update_with_password(params, *options)
+    if encrypted_password.blank?
+      update_attributes(params, *options)
+    else
+      super
     end
   end
 end

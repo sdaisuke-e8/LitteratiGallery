@@ -18,6 +18,7 @@ gem 'jquery-rails'
 gem 'bcrypt'
 gem 'carrierwave'
 gem 'omniauth'
+gem 'devise'
 gem 'omniauth-twitter'
 
 group :development, :test do
