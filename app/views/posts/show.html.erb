@@ -14,7 +14,7 @@
         <%= image_tag @post.image.url%>
 
         <!-- いいね！機能 -->
-        <% if Favorite.find_by(user_id: @current_user.id, post_id: @post.id) %>
+        <% if Favorite.find_by(user_id: current_user.id, post_id: @post.id) %>
           <%= link_to post_favorite_path(post_id: @post.id), method: :delete do %>
             <span class="fa fa-heart like-btn-unlike"></span>
           <% end %>
@@ -38,7 +38,7 @@
         </p>
 
         <!-- 投稿データの編集・削除 -->
-        <% if @post.user_id == @current_user.id %>
+        <% if @post.user_id == current_user.id %>
           <div class="post-menus">
             <%= link_to("編集", "/posts/#{@post.id}/edit") %>
             <%= link_to("削除", "/posts/#{@post.id}", {method: "delete"}) %>

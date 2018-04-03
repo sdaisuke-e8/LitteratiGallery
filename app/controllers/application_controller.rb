@@ -1,24 +1,12 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  before_action :current_user
-
-  def current_user
-    @current_user = User.find_by(id: session[:user_id])
-  end
 
   def log_in(user)
-    session[:user_id] = user.id
-  end
-
-  def authenticate_user
-    if @current_user == nil
-      flash[:notice] = "ログインが必要です"
-      redirect_to login_path
-    end
+    user_session[:user_id] = user.id
   end
 
   def forbid_login_user
-    if @current_user
+    if user_signed_in?
       flash[:notice] = "すでにログインしています"
       redirect_to posts_path
     end
